@@ -180,7 +180,7 @@ class HBNBComand(cmd.Cmd):
         """
         return True
 
-    def do_eof(self):
+    def do_EOF(self):
         """
         Handles the last of the file.
         """
