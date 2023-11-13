@@ -21,7 +21,7 @@ class TestConsole(unittest.TestCase):
         """ Test save, reload and update functions """
         """ Test attributes value of a BaseModel instance """
 
-        self.test_model.name = "Holberton"
+        self.test_model.name = "My_First_Model"
         self.test_model.my_number = 89
         self.test_model.save()
         test_model_json = self.test_model.to_dict()
