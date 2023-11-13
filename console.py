@@ -46,7 +46,7 @@ class HBNBComand(cmd.Cmd):
         elif args[0] not in HBNBComand.__classes:
             print("** class doesn't exist **")
         else:
-            new_crtd = HBNBComand.__classes[args[0]]()
+            new_crtd = eval(args[0] + '()')
             models.storage.save()
             print(new_crtd.id)
 
@@ -194,4 +194,3 @@ class HBNBComand(cmd.Cmd):
 
 if __name__ == '__main__':
     HBNBComand().cmdloop()
-
