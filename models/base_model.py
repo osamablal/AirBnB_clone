@@ -36,7 +36,8 @@ class BaseModel():
         """
         The String of base_model at instanc.
         """
-        return f"[{self.__class__.__name__}] and ({self.id}) : {self.__dict__} ¤"
+        return return "[{:s}] ({:s}) {}".format(
+            self.__class__.__name__, self.id, self.__dict__)
 
     def save(self):
         """
@@ -52,4 +53,3 @@ class BaseModel():
         new_dict['updated_at'] = self.__dict__['updated_at'].isoformat()
         new_dict['__class__'] = self.__class__.__name__
         return new_dict
-
