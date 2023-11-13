@@ -1,7 +1,6 @@
 #!/usr/bin/python3
 """
-Moduling The File-Storage.
-"""
+Moduling The FileStorage"""
 
 import json
 from models.base_model import BaseModel
@@ -49,7 +48,7 @@ class FileStorage():
         Doing Deserial to the JSON File to objects at instance.
         """
         try:
-            with open(FileStorage.__file_path, mode='r', encoding="UTF-8") as k:
+            with open(FileStorage.__file_path, mode='r',encoding="UTF-8") as k:
                 new_dict = json.load(k)
 
             for key, value in new_dict.items():
@@ -58,4 +57,4 @@ class FileStorage():
                 FileStorage.__objects[key] = obj
 
         except FileNotFoundError:
-            pass 
+            pass
