@@ -27,7 +27,7 @@ class TestConsole(unittest.TestCase):
         test_model_json = self.test_model.to_dict()
 
         self.assertEqual(self.test_model.name, test_model_json['name'])
-        self.assertEqual(self.test_model.my_number, test_model_json['my_number'])
+        self.assertEqual(self.test_model.my_number,test_model_json['my_number'])
         self.assertEqual('BaseModel', test_model_json['__class__'])
         self.assertEqual(self.test_model.id, test_model_json['id'])
 
@@ -41,7 +41,7 @@ class TestConsole(unittest.TestCase):
         self.test_model.save()
         self.assertEqual(os.path.exists(storage._FileStorage__file_path), True)
         self.assertEqual(storage.all(), storage._FileStorage__objects)
- 
+
     def testSaveSelf(self):
         """ Check save self """
         phrase = "save() takes 1 positional argument but 2 were given"
@@ -49,6 +49,7 @@ class TestConsole(unittest.TestCase):
             FileStorage.save(self, 100)
 
         self.assertEqual(str(e.exception), phrase)
+
 
 if __name__ == '__main__':
     unittest.main()
