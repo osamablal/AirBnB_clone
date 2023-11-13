@@ -34,13 +34,13 @@ class TestConsole(unittest.TestCase):
 
     def testHasAttributes(self):
         """ verify attributes existance """
-        self.assertEqual(hasattr(FileStorage, '_FileStorage__file_path'), True)
+        self.assertEqual(hasattr(FileStorage, '_FileStorage__file_path'),True)
         self.assertEqual(hasattr(FileStorage, '_FileStorage__objects'), True)
 
     def testSave(self):
         """verify if JSON exists"""
         self.test_model.save()
-        self.assertEqual(os.path.exists(storage._FileStorage__file_path), True)
+        self.assertEqual(os.path.exists(storage._FileStorage__file_path),True)
         self.assertEqual(storage.all(), storage._FileStorage__objects)
 
     def testSaveSelf(self):
