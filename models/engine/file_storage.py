@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 """
-Moduling The File-Storage 
+Moduling The File-Storage.
 """
 
 import json
@@ -41,16 +41,16 @@ class FileStorage():
         new_dict = {}
         for key, value in FileStorage.__objects.items():
             new_dict[key] = value.to_dict().copy()
-        with open(FileStorage.__file_path, mode='w', encoding="UTF-8") as my_file:
-            json.dump(new_dict, my_file)
+        with open(FileStorage.__file_path, mode='w', encoding="UTF-8") as k:
+            json.dump(new_dict, k)
 
     def reload(self):
         """
         Doing Deserial to the JSON File to objects at instance.
         """
         try:
-            with open(FileStorage.__file_path, mode='r', encoding="UTF-8") as my_file:
-                new_dict = json.load(my_file)
+            with open(FileStorage.__file_path, mode='r', encoding="UTF-8") as k:
+                new_dict = json.load(k)
 
             for key, value in new_dict.items():
                 class_name = value.get('__class__')
