@@ -54,9 +54,8 @@ class FileStorage():
 
             for key, value in new_dict.items():
                 class_name = value.get('__class__')
-                obj = new_dict[class_name](**value[key])
+                obj = eval(class_name + '(**value)')
                 FileStorage.__objects[key] = obj
 
         except FileNotFoundError:
-            pass
-            
+            pass 
