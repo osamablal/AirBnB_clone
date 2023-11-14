@@ -36,8 +36,7 @@ class BaseModel():
         """
         The String of base_model at instanc.
         """
-        return "[{:s}] ({:s}) {}".format(
-            self.__class__.__name__, self.id, self.__dict__)
+        return f"[{self.__class__.__name__}] and ({self.id}) : {self.__dict__} ¤"
 
     def save(self):
         """

@@ -17,3 +17,4 @@ class City(BaseModel):
         Configuares the city.
         """
         BaseModel.__init__(self, *args, **kwargs)
+
