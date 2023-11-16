@@ -46,7 +46,7 @@ class HBNBComand(cmd.Cmd):
         elif args[0] not in HBNBComand.__classes:
             print("** class doesn't exist **")
         else:
-            new_crtd = eval(args[0] + '()')
+            new_crtd = HBNBComand.__classes[args[0]]()
             models.storage.save()
             print(new_crtd.id)
 
@@ -75,22 +75,27 @@ class HBNBComand(cmd.Cmd):
            Delete an instance
            Usage: destroy the classname and id.
         """
-        args = args.split()
-        objects = models.storage.all()
+        if not arg:
+            print("** class name missing **")
+            return
 
-        if len(args) == 0:
-            print('** class name missing **')
-        elif args[0] not in HBNBComand.__classes:
+        args = arg.split(' ')
+
+        if args[0] not in HBNBCommand.__classes:
             print("** class doesn't exist **")
         elif len(args) == 1:
-            print('** instance id missing **')
+            print("** instance id missing **")
         else:
-            key_find = args[0] + '.' + args[1]
-            if key_find in objects:
-                objects.pop(key_find, None)
-                models.storage.save()
-            else:
-                print('** no instance found **')
+            store_all = storage.all()
+            for key, value in store_all.items():
+                obj_name = value.__class__.__name__
+                obj_id = value.id
+                if obj_name == args[0] and obj_id == args[1].strip('"'):
+                    del value
+                    del storage._FileStorage__objects[key]
+                    storage.save()
+                    return
+            print("** no instance found **")
 
     def do_all(self, args):
         """
@@ -173,6 +178,16 @@ class HBNBComand(cmd.Cmd):
                     return key
                 print("** class doesn't exist **")
                 return None
+
+    def do_count(self, cls_name):
+        """counts number of instances of a class"""
+        count = 0
+        store_all = storage.all()
+        for k, v in store_all.items():
+            class_var = k.split('.')
+            if class_var[0] == cls_name:
+                count = count + 1
+        print(count)
 
     def do_quit(self):
         """
