@@ -35,6 +35,18 @@ class HBNBComand(cmd.Cmd):
         "User"
     ]
 
+    __meth = ['create', 'show', 'update', 'all', 'destroy', 'count']
+
+    def precmd(self, arg):
+        """parses command input"""
+        if '.' in arg and '(' in arg and ')' in arg:
+            cls = arg.split('.')
+            cont = cls[1].split('(')
+            args = cont[1].split(')')
+            if cls[0] in HBNBComand.__classes and cont[0] in HBNBComand.__meth:
+                arg = cont[0] + ' ' + cls[0] + ' ' + args[0]
+        return arg
+
     def do_create(self, args):
         """
            Creating New Base Model, saving the Basemodel and printing ID.
@@ -189,13 +201,13 @@ class HBNBComand(cmd.Cmd):
                 count = count + 1
         print(count)
 
-    def do_quit(self):
+    def do_quit(self, arg):
         """
         For Exiting app.
         """
         return True
 
-    def do_EOF(self):
+    def do_EOF(self, arg):
         """
         Handles the last of the file.
         """
@@ -205,6 +217,7 @@ class HBNBComand(cmd.Cmd):
         """
            if user at entering new emptyline don't execute anything.
         """
+        pass
 
 
 if __name__ == '__main__':
